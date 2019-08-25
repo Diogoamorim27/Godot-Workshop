@@ -1,13 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/blacknwhite.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.03114, 3.8519 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "Death"
+[sub_resource type="Animation" id=2]
+resource_name = "Climbing"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -22,8 +36,8 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "Idle"
+[sub_resource type="Animation" id=4]
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -37,8 +51,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Jump"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -52,8 +65,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Running"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -80,15 +92,16 @@ __meta__ = {
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 8
-frame = 5
+frame = 6
 region_rect = Rect2( 36, 0, 12, 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 8 )
-anims/Idle = SubResource( 9 )
-anims/Jump = SubResource( 10 )
-anims/Run = SubResource( 11 )
+anims/Climbing = SubResource( 2 )
+anims/Death = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Jump = SubResource( 5 )
+anims/Run = SubResource( 6 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

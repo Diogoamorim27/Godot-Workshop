@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-enum states {RUN, JUMP, DEATH, IDLE}
+enum states {RUN, JUMP, DEATH, IDLE, CLIMBING}
 
-const animations = { 0 : "Running", 1 : "Jump", 2 : "Death", 3 : "Idle"}
+const animations = { 0 : "Running", 1 : "Jump", 2 : "Death", 3 : "Idle", 4: "Climbing"}
 const RUNNING_SPEED = 70
 const AIR_SPEED = 60
 const GRAVITY = 9.8 * 10
@@ -25,27 +25,35 @@ func _process(delta):
 	match state:
 		states.RUN:
 			_apply_movement(input, RUNNING_SPEED)
-			_handle_animation()
+			
 			if is_on_floor():
-				if Input.is_action_pressed("ui_accept"):
+				if input == 0:
+					state = states.IDLE
+				elif Input.is_action_pressed("ui_accept"):
 					_jump()
 			else:
 				state = states.JUMP
+			
+			movement = move_and_slide_with_snap(movement, Vector2(0,0.2),Vector2.UP)
+		
 		states.JUMP:
 			_apply_gravity(delta)
 			_apply_movement(input, AIR_SPEED)
-			_handle_animation()
+			
 			if is_on_floor():
 				if input == 0:
 					state = states.IDLE
 				else:
 					state = states.RUN
-				
+			
+			movement = move_and_slide_with_snap(movement, Vector2(0,0.2),Vector2.UP)	
+		
 		states.DEATH:
 			_apply_movement(0, 0)
 			_apply_gravity(delta)
-			_handle_animation()
 			
+			movement = move_and_slide_with_snap(movement, Vector2(0,0.2),Vector2.UP)
+		
 		states.IDLE:
 			if is_on_floor():
 				if input != 0:
@@ -54,9 +62,23 @@ func _process(delta):
 					_jump()
 			else:
 				state = states.JUMP
+				
+			movement = move_and_slide_with_snap(movement, Vector2(0,0.2),Vector2.UP)	
+		
+		states.CLIMBING:
+		
+			movement.x = input * AIR_SPEED
+			movement.y = (int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))) * AIR_SPEED
+			
+			print(movement.y)
+			
+			if Input.is_action_pressed("ui_accept"):
+				_jump()
+			
+			movement = move_and_slide(movement)
 	
-	print(animations[state])
-	movement = move_and_slide_with_snap(movement, Vector2(0,0.2),Vector2.UP)
+	
+	_handle_animation()
 	
 
 func _get_input_direction() -> int:
@@ -96,4 +118,15 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_Coin_body_entered(body):
 	if body.name == "Player":
 		coins += 1
+
+
+
+func _on_Ladder_body_entered(body):
+	if body.name == "Player":
+		state = states.CLIMBING
+
+
+func _on_Ladder_body_exited(body):
+	if body.name == "Player":
+		state = states.JUMP
 
