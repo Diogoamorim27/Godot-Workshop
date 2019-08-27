@@ -11,9 +11,10 @@ const JUMP = -55
 onready var animation_player : = $AnimationPlayer
 onready var sprite : = $Sprite
 
-var coins = 0 
+var coins : = 0 
 var movement : = Vector2()
 var state
+var has_key : = false
 
 func _ready():
 	state = states.RUN
@@ -130,3 +131,8 @@ func _on_Ladder_body_exited(body):
 	if body.name == "Player":
 		state = states.JUMP
 
+
+
+func _on_Key_body_entered(body):
+	if body.name == "Player":
+		has_key = true

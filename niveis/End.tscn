@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="NoiseTexture" id=1]
+
+[node name="End" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 512.0
+margin_bottom = 512.0
+texture = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 36.0
+margin_top = 56.0
+margin_right = 120.0
+margin_bottom = 64.0
+text = "Obrigado por jogar!"

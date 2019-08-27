@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://niveis/Start.gd" type="Script" id=1]
+
+[sub_resource type="NoiseTexture" id=1]
+
+[node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 36.0
+margin_right = 125.0
+margin_bottom = 66.0
+text = "Demo Minicurso SE 2019
+
+      Godot Engine"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 48.0
+margin_top = 72.0
+margin_right = 96.0
+margin_bottom = 86.0
+text = "jogar"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
