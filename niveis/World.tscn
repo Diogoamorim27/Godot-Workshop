@@ -9,8 +9,8 @@
 [ext_resource path="res://prefabs/Ladder.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tilemap.tres" type="TileSet" id=8]
 [ext_resource path="res://prefabs/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Coins.gd" type="Script" id=10]
-[ext_resource path="res://Label.gd" type="Script" id=11]
+[ext_resource path="res://prefabs/Coins.gd" type="Script" id=10]
+[ext_resource path="res://niveis/Label.gd" type="Script" id=11]
 
 [sub_resource type="NoiseTexture" id=1]
 width = 144
@@ -157,18 +157,18 @@ margin_top = 6.0
 margin_right = 140.0
 margin_bottom = 14.0
 script = ExtResource( 11 )
-[connection signal="body_entered" from="Coins/Coin" to="Coins/Coin" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin" to="Player" method="_on_Coin_body_entered"]
-[connection signal="body_entered" from="Coins/Coin3" to="Coins/Coin3" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin" to="Coins/Coin" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin3" to="Player" method="_on_Coin_body_entered"]
-[connection signal="body_entered" from="Coins/Coin4" to="Coins/Coin4" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin3" to="Coins/Coin3" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin4" to="Player" method="_on_Coin_body_entered"]
-[connection signal="body_entered" from="Coins/Coin5" to="Coins/Coin5" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin4" to="Coins/Coin4" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin5" to="Player" method="_on_Coin_body_entered"]
-[connection signal="body_entered" from="Coins/Coin6" to="Coins/Coin6" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin5" to="Coins/Coin5" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin6" to="Player" method="_on_Coin_body_entered"]
-[connection signal="body_entered" from="Coins/Coin2" to="Coins/Coin2" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin6" to="Coins/Coin6" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Coins/Coin2" to="Player" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin2" to="Coins/Coin2" method="_on_Coin_body_entered"]
 [connection signal="body_entered" from="Hazard/Fire" to="Player" method="_on_Fire_body_entered"]
 [connection signal="body_entered" from="Hazard/Fire2" to="Player" method="_on_Fire_body_entered"]
 [connection signal="body_entered" from="Hazard/Fire3" to="Player" method="_on_Fire_body_entered"]
