@@ -29,4 +29,5 @@ margin_top = 72.0
 margin_right = 96.0
 margin_bottom = 86.0
 text = "jogar"
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
